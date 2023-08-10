@@ -26,17 +26,17 @@ function ToastProvider({ children }) {
 }
 
 function useEscapeKey(callback) {
-	function handleKeyDown(e) {
-		if (e.code === 'Escape') {
-			callback();
-		}
-	}
-
 	React.useEffect(() => {
+		function handleKeyDown(e) {
+			if (e.code === 'Escape') {
+				callback();
+			}
+		}
+
 		window.addEventListener('keydown', handleKeyDown);
 
 		return () => window.removeEventListener('keydown', handleKeyDown);
-	}, []);
+	}, [callback]);
 }
 
 export default ToastProvider;
